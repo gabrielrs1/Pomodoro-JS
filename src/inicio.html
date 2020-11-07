@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/inicio.css">
+</head>
+<body>
+    <h1>Pomodoro</h1>
+
+    <div class="container">
+        <div class="counters">
+            <div id="work" class="count">5</div>
+            <p>Trabalho</p>
+            <div class="arrow">
+                <img src="/img/arrow-circle-up-solid.svg" alt="Seta pra cima" onclick="upBtnWork()">
+                <img src="/img/arrow-circle-down-solid.svg" alt="Seta pra baixo" onclick="downBtnWork()">
+            </div>
+        </div>
+
+        <div class="counters"> 
+            <div id="pause" class="count">5</div>
+            <p>Pausa</p>
+            <div class="arrow">
+                <img src="/img/arrow-circle-up-solid.svg" alt="Seta pra cima" onclick="upBtnPause()">
+                <img src="/img/arrow-circle-down-solid.svg" alt="Seta pra baixo" onclick="downBtnPause()">
+            </div>
+        </div>
+
+        <div class="counters">
+            <div id="section" class="count">3</div>
+            <p>Sessões</p>
+            <div class="arrow">
+                <img src="/img/arrow-circle-up-solid.svg" alt="Seta pra cima" onclick="upBtnSection()">
+                <img src="/img/arrow-circle-down-solid.svg" alt="Seta pra baixo" onclick="downBtnSection()">
+            </div>
+        </div>
+    </div>
+
+    <button onclick="submitData()"><a href="/src/pomodoro.html">Continuar</a></button>
+
+    <script src="/scripts/inicio.js"></script>
+</body>
+</html>
