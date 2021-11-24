@@ -74,8 +74,27 @@ main .starter h1 {
     color: #219653;
 }
 
+main .starter .markerSection {
+    margin: 50px auto 0 auto;
+    width: 100px;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+main .starter .markerSection li {
+    list-style: none;
+
+    width: 10px;
+    height: 10px;
+
+    background: #49517a;
+
+    border-radius: 50px;
+}
+
 main .starter button {
-    margin-top: 50px;
+    margin-top: 20px;
 
     border: 0;
     border-radius: 1rem;

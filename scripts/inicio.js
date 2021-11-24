@@ -1,45 +1,52 @@
-var work = document.querySelector('#work')
-var pause = document.querySelector('#pause')
-var section = document.querySelector('#section')
+var work = document.querySelector('#work');
+var pause = document.querySelector('#pause');
+var section = document.querySelector('#section');
 
-var numWork = 5
-var numPause = 5
-var numSection = 3
+var minutesWork = 5;
+var minutesPause = 5;
+var quantitySection = 3;
 
-function upBtnWork() {
-    if(numWork <= 39) {
-        work.innerHTML = numWork += 1
+// Work
+function upButtonWork() {
+    if(minutesWork < 60) {
+        work.innerHTML = minutesWork += 1;
     }
 }
-function downBtnWork() {
-    if(numWork >= 6) {
-        work.innerHTML = numWork -= 1
+function downButtonWork() {
+    if(minutesWork > 5) {
+        work.innerHTML = minutesWork -= 1;
     }
 }
-function upBtnPause() {
-    if(numPause <= 39) {
-        pause.innerHTML = numPause += 1
+
+// Pause
+function upButtonPause() {
+    if(minutesPause < 20) {
+        pause.innerHTML = minutesPause += 1;
     }
 }
-function downBtnPause() {
-    if(numPause >= 4) {
-        pause.innerHTML = numPause -= 1
+function downButtonPause() {
+    if(minutesPause > 5) {
+        pause.innerHTML = minutesPause -= 1;
     }
 }
-function upBtnSection() {
-    if(numSection <= 39) {
-        section.innerHTML = numSection += 1
+
+// Sections
+function upButtonSection() {
+    if(quantitySection < 5) {
+        section.innerHTML = quantitySection += 1;
     }
 }
-function downBtnSection() {
-    if(numSection >= 2) {
-        section.innerHTML = numSection -= 1
+function downButtonSection() {
+    if(quantitySection > 3) {
+        section.innerHTML = quantitySection -= 1;
     }
 }
 
 function submitData() {
-    var a = [numWork, numPause, numSection]
-    for(i in a) {
-        localStorage.setItem(`${i}`, `${a[i]}`)
+    var timerValues = [minutesWork, minutesPause, quantitySection];
+    var timerNames = ["work", "pause", "section"];
+
+    for(i in timerValues) {
+        localStorage.setItem(`${timerNames[i]}`, `${timerValues[i]}`);
     }
 }
