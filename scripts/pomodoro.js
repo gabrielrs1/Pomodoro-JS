@@ -1,24 +1,37 @@
-var minutesWork = localStorage.getItem('work');
-var minutesPause = localStorage.getItem('pause');
-var quantitySection = localStorage.getItem('section');
+var work = localStorage.getItem('work');
+var pause = localStorage.getItem('pause');
+var section = localStorage.getItem('section');
+
+var start = document.getElementById("start");
+start.addEventListener("click", () => {
+    if(verifyTypeStart) {
+        startTimer();
+    } else {
+        pauseTimer();
+    }
+});
 
 var timer = document.querySelector('#timer');
-timer.innerHTML = `${minutesWork > 9 ? '' + minutesWork : '0' + minutesWork} : 00`;
+timer.innerHTML = `${work > 9 ? '' + work : '0' + work} : 00`;
 
 var sectionEnd = 0;
 
 var sectionCountWork = 0;
 var sectionCountPause = 0;
 
-function startTimer() {
-    bulletChange("work", sectionCountWork, "#219653");
-    timer.style.border = '4px solid #219653';
-    nameActionTimer("Trabalho", "#219653");
+var minutes = work - 1;
+var seconds = 59;
 
-    var minutes = minutesWork - 1;
-    var seconds = 59;
+var time = null;
+var verifyTypeStart = true;
+
+function startTimer() {
+    timer.style.border = '4px solid #219653';
+
+    bulletChange("work", sectionCountWork, "#219653");
+    nameActionTimer("Trabalho", "#219653");
     
-    var time = setInterval(function() {
+    time = setInterval(function() {
         var minuteFinal = minutes > 9 ? '' + minutes : '0' + minutes;
         var secondFinal = seconds > 9 ? '' + seconds : '0' + seconds;
         timer.innerHTML = `${minuteFinal} : ${secondFinal}`;
@@ -30,9 +43,14 @@ function startTimer() {
             minutes -= 1;
         } else {
             finish(time);
+
             sectionCountWork++;
             sectionEnd++;
-            if(sectionEnd != quantitySection) {
+            if(sectionEnd != section) {
+                minutes = work - 1;
+                seconds = 59;
+                verifyTypeStart = false;
+
                 pauseTimer();
             }
         }
@@ -40,29 +58,35 @@ function startTimer() {
 }
 
 function pauseTimer() {
-    bulletChange("pause", sectionCountPause, "#F2C94C");
     timer.style.border = '4px solid #F2C94C';
+
+    bulletChange("pause", sectionCountPause, "#F2C94C");
     nameActionTimer("Pausa", "#F2C94C");
     
-    var minutes = minutesPause - 1;
-    var seconds = 59;
-    
-    var time = setInterval(function() {
+    time = setInterval(function() {
         var minuteFinal = minutes > 9 ? '' + minutes : '0' + minutes;
         var secondFinal = seconds > 9 ? '' + seconds : '0' + seconds;
         timer.innerHTML = `${minuteFinal} : ${secondFinal}`;
-        
+
         if(seconds > 0) {
             seconds -= 1;
         } else if(seconds == 0 && minutes > 0) {
             seconds = 59;
             minutes -= 1;
         } else {
+            minutes = work - 1;
+            seconds = 59;
+            sectionCountPause++;
+            verifyTypeStart = true;
+
             finish(time);
             startTimer();
-            sectionCountPause++;
         }
     }, 10);
+}
+
+function stop() {
+    clearInterval(time);
 }
 
 // Change name action of timer
