@@ -10,25 +10,6 @@ var sectionEnd = 0;
 var sectionCountWork = 0;
 var sectionCountPause = 0;
 
-function counter() {
-    var time = setInterval(function() {
-        var minuteFinal = minutes > 9 ? '' + minutes : '0' + minutes;
-        var secondFinal = seconds > 9 ? '' + seconds : '0' + seconds;
-        timer.innerHTML = `${minuteFinal} : ${secondFinal}`;
-
-        if(seconds > 0) {
-            seconds -= 1;
-        } else if(seconds == 0 && minutes > 0) {
-            seconds = 59;
-            minutes -= 1;
-        } else {
-            return;
-        }
-    }, 10);
-
-    return time;
-}
-
 function startTimer() {
     bulletChange("work", sectionCountWork, "#219653");
     timer.style.border = '4px solid #219653';
@@ -95,10 +76,22 @@ function bulletChange(name, value, color) {
     var bulletList = document.querySelectorAll('li');
 
     if(name == "work") {
-        bulletList[value].dataset.id;
+        if(value > 0) {
+            bulletList[0].style.background = color;
+        }
+        if(value > 1) {
+            bulletList[1].style.background = color;
+        }
+
         bulletList[value].style.background = color;
     } else {
-        bulletList[value].dataset.id;
+        if(value > 0) {
+            bulletList[0].style.background = color;
+        }
+        if(value > 1) {
+            bulletList[1].style.background = color;
+        }
+
         bulletList[value].style.background = color;
     }
 }
