@@ -54,7 +54,7 @@ function startTimer() {
                 pauseTimer();
             }
         }
-    }, 10);
+    }, 1000);
 }
 
 function pauseTimer() {
